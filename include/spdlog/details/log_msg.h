@@ -21,6 +21,7 @@ struct SPDLOG_API log_msg
     level::level_enum level{level::off};
     log_clock::time_point time;
     size_t thread_id{0};
+    string_view_t thread_name;
 
     // wrapping the formatted text with color (updated by pattern_formatter).
     mutable size_t color_range_start{0};

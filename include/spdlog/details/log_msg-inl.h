@@ -8,6 +8,7 @@
 #endif
 
 #include <spdlog/details/os.h>
+#include <spdlog/details/thread_name.h>
 
 namespace spdlog {
 namespace details {
@@ -19,6 +20,7 @@ SPDLOG_INLINE log_msg::log_msg(spdlog::log_clock::time_point log_time, spdlog::s
     , time(log_time)
 #ifndef SPDLOG_NO_THREAD_ID
     , thread_id(os::thread_id())
+    , thread_name(os::thread_name())
 #endif
     , source(loc)
     , payload(msg)

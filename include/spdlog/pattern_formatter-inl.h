@@ -652,9 +652,8 @@ public:
 
     void format(const details::log_msg &msg, const std::tm &, memory_buf_t &dest) override
     {
-        const auto field_size = ScopedPadder::count_digits(msg.thread_id);
-        ScopedPadder p(field_size, padinfo_, dest);
-        fmt_helper::append_int(msg.thread_id, dest);
+        ScopedPadder p(msg.thread_name.size(), padinfo_, dest);
+        fmt_helper::append_string_view(msg.thread_name, dest);
     }
 };
 
