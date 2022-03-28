@@ -20,3 +20,15 @@ const std::string& spdlog::details::os::thread_name() {
   }
   return ::thread_name;
 }
+
+void spdlog::details::os::set_os_thread_name(const std::string& name) {
+#if defined(__linux__)
+  pthread_setname_np(pthread_self(), name.c_str());
+#elif defined(__APPLE__)
+  pthread_setname_np(name.c_str());
+#endif
+}
+
+void spdlog::details::os::set_thread_name(const std::string& name) {
+  ::thread_name = name;
+}
